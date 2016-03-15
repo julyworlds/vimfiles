@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -59,6 +58,7 @@ Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/rcsvers.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -396,6 +396,10 @@ func! SyntasticCheckCoffeescript()
 endfunc
 nnoremap <silent> <leader>l :call SyntasticCheckCoffeescript()<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim rcs history
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rvSaveDirectoryName="/tmp/vimRcs/"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
