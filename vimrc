@@ -59,6 +59,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/rcsvers.vim'
+Plugin 'hhvm/vim-hack'
+Plugin 'beloglazov/vim-textobj-quotes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -162,7 +164,7 @@ set tm=500
 set foldcolumn=1
 
 set number
-
+set rnu
 set nofoldenable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -384,7 +386,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_python_checkers=['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Custom CoffeeScript SyntasticCheck
