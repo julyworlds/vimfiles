@@ -27,7 +27,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 Plugin 'corntrace/bufexplorer'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/mayansmoke'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/nginx.vim'
@@ -61,6 +61,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/rcsvers.vim'
 Plugin 'hhvm/vim-hack'
 Plugin 'beloglazov/vim-textobj-quotes'
+Plugin 'hsanson/vim-android'
+Plugin 'vim-scripts/StatusLineHighlight'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -386,8 +388,21 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" start of default statusline
+set statusline=%<%f %h%m%r
+" Syntastic statusline
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" end of default statusline (with ruler)
+if &ruler
+    set statusline+=%=%(%l,%c%V\ %=\ %P%)
+endif
+
 let g:syntastic_python_checkers=['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_java_javac_config_file_enabled = 1
+let g:android_sdk_path='/Users/juldiadia/android-sdk-macosx'
 
 " Custom CoffeeScript SyntasticCheck
 func! SyntasticCheckCoffeescript()
