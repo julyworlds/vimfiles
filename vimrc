@@ -63,7 +63,7 @@ Plugin 'hhvm/vim-hack'
 Plugin 'beloglazov/vim-textobj-quotes'
 Plugin 'hsanson/vim-android'
 Plugin 'vim-scripts/StatusLineHighlight'
-Plugin 'mxw/vim-jsx'
+Plugin 'neoclide/vim-jsx-improve'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
