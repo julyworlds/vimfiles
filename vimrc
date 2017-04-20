@@ -63,7 +63,8 @@ Plugin 'hhvm/vim-hack'
 Plugin 'beloglazov/vim-textobj-quotes'
 Plugin 'hsanson/vim-android'
 Plugin 'vim-scripts/StatusLineHighlight'
-Plugin 'neoclide/vim-jsx-improve'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -425,3 +426,7 @@ let g:rvSaveDirectoryName="/tmp/vimRcs/"
 let g:gitgutter_enabled=0
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM jsx
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+g:vim_jsx_pretty_colorful_config=1
