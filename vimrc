@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -48,6 +49,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-expand-region'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/goyo.vim'
 Plugin 'amix/vim-zenroom2'
@@ -178,7 +180,7 @@ set nofoldenable
 syntax enable 
 
 try
-    colorscheme desert
+    colorscheme neuromancer
 catch
 endtry
 
@@ -190,7 +192,10 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-    colorscheme torte
+    if has('gui_macvim')
+        let $SUDO_ASKPASS="/usr/local/bin/macvim-askpass"
+        let $DISPLAY=":0"
+    endif
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -404,7 +409,7 @@ endif
 let g:syntastic_python_checkers=['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_java_javac_config_file_enabled = 1
-let g:android_sdk_path='/Users/juldiadia/android-sdk-macosx'
+let g:android_sdk_path='~/android-sdk-macosx'
 
 " Custom CoffeeScript SyntasticCheck
 func! SyntasticCheckCoffeescript()
