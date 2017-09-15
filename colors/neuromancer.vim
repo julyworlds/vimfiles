@@ -10,7 +10,7 @@ let g:colors_name = "neuromancer"
 let s:colors = {
     \ "dark_blue": "#54C9FF",
     \ "turquoise": "#6AFFB7",
-    \ "dark_purple": "#1B1C30",
+    \ "dark_purple": "#1e1f29",
     \ "light_purple": "#858EED",
     \ "dark_gray": "#7E7E7E",
     \ "orange": "#ED6352",
@@ -38,8 +38,8 @@ call Hi("Statement", s:colors["dark_blue"], "NONE", "NONE")
 call Hi("Comment", s:colors["dark_gray"], "NONE", "NONE")
 call Hi("PreProc", s:colors["orange"], "NONE", "NONE")
 call Hi("String", s:colors["yellow"], "NONE", "NONE")
-call Hi("Number", s:colors["dark_purple"], "NONE", "NONE")
-call Hi("Float", s:colors["dark_purple"], "NONE", "NONE")
+call Hi("Number", s:colors["turquoise"], "NONE", "NONE")
+call Hi("Float", s:colors["turquoise"], "NONE", "NONE")
 call Hi("Repeat", s:colors["red"], "NONE", "NONE")
 call Hi("Operator", s:colors["red"], "NONE", "NONE")
 
@@ -208,6 +208,7 @@ call Hi("javascriptParens", "NONE", "NONE", "NONE")
 call Hi("javascriptBraces", "NONE", "NONE", "NONE")
 call Hi("javascriptFuncEq", "NONE", "NONE", "NONE")
 call Hi("javascriptEndColons", "NONE", "NONE", "NONE")
+call Hi("javascriptStatement", s:colors["yellow"], "NONE", "NONE")
 
 """"""""""""""""""""""""""""""""
 "   Sass specific settings     "
