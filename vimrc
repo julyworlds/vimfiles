@@ -61,7 +61,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/rcsvers.vim'
-Plugin 'hhvm/vim-hack'
+" Plugin 'hhvm/vim-hack'
 Plugin 'beloglazov/vim-textobj-quotes'
 Plugin 'hsanson/vim-android'
 Plugin 'vim-scripts/StatusLineHighlight'
@@ -407,6 +407,9 @@ if &ruler
 endif
 
 let g:syntastic_python_checkers=['pylint']
+let g:syntastic_php_checkers=['php', 'phpmd', 'phpcs']
+let g:syntastic_php_phpcs_args='--exclude=PEAR.Commenting.FileComment,PEAR.Commenting.ClassComment,PEAR.Commenting.FunctionComment,Generic.Commenting.DocComment'
+let g:syntastic_php_phpmd_post_args='codesize,design,unusedcode,naming'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_java_javac_config_file_enabled = 1
 let g:android_sdk_path='~/android-sdk-macosx'
