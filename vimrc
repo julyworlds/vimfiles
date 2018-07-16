@@ -37,7 +37,6 @@ Plugin 'scrooloose/snipmate-snippets'
 Plugin 'vim-scripts/tlib'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'sophacles/vim-bundle-mako'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'groenewege/vim-less'
@@ -60,13 +59,15 @@ Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/rcsvers.vim'
+" Plugin 'vim-scripts/rcsvers.vim'
 " Plugin 'hhvm/vim-hack'
+Plugin 'kana/vim-textobj-user'
 Plugin 'beloglazov/vim-textobj-quotes'
-Plugin 'hsanson/vim-android'
+" Plugin 'hsanson/vim-android'
 Plugin 'vim-scripts/StatusLineHighlight'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maxmellon/vim-jsx-pretty'
+" Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -396,7 +397,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " start of default statusline
-set statusline=%<%f %h%m%r
+set statusline=%<%f\ %h%m%r\
 " Syntastic statusline
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -437,4 +438,9 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM jsx
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-g:vim_jsx_pretty_colorful_config=1
+let g:vim_jsx_pretty_colorful_config=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let vim_markdown_preview_github=1
