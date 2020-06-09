@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<ruleset name="MyStandard">
+    <description>My custom coding standard.</description>
+    <rule ref="Generic.ControlStructures.InlineControlStructure">
+    </rule>
+    <rule ref="Generic.Files.LineEndings">
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+    </rule>
+    <rule ref="Generic.Functions.FunctionCallArgumentSpacing">
+    </rule>
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName">
+    </rule>
+    <rule ref="Generic.PHP.DisallowShortOpenTag">
+    </rule>
+    <rule ref="Generic.PHP.LowerCaseConstant">
+    </rule>
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent">
+    </rule>
+    <rule ref="PEAR.Classes.ClassDeclaration">
+        <exclude name="PEAR.Classes.ClassDeclaration.OpenBraceNewLine" />
+    </rule>
+    <rule ref="PEAR.Commenting.InlineComment">
+    </rule>
+    <rule ref="PEAR.ControlStructures.ControlSignature">
+    </rule>
+    <rule ref="PEAR.ControlStructures.MultiLineCondition">
+    </rule>
+    <rule ref="PEAR.Files.IncludingFile">
+    </rule>
+    <rule ref="PEAR.Formatting.MultiLineAssignment">
+    </rule>
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+        <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+    </rule>
+    <rule ref="PEAR.Functions.FunctionDeclaration">
+        <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine" />
+    </rule>
+    <rule ref="PEAR.Functions.ValidDefaultValue">
+    </rule>
+    <rule ref="PEAR.NamingConventions.ValidClassName">
+    </rule>
+    <rule ref="PEAR.NamingConventions.ValidFunctionName">
+    </rule>
+    <rule ref="PEAR.NamingConventions.ValidVariableName">
+    </rule>
+    <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent">
+    </rule>
+    <rule ref="PEAR.WhiteSpace.ScopeClosingBrace">
+    </rule>
+    <rule ref="PEAR.WhiteSpace.ScopeIndent">
+    </rule>
+    <rule ref="Squiz.Commenting.DocCommentAlignment">
+    </rule>
+</ruleset>
