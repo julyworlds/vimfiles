@@ -40,7 +40,7 @@ Plugin 'sophacles/vim-bundle-mako'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'groenewege/vim-less'
-Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-markdown'
 Plugin 'therubymug/vim-pyte'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
@@ -55,7 +55,7 @@ Plugin 'amix/vim-zenroom2'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-commentary'
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
 Plugin 'Valloric/YouCompleteMe'
@@ -68,6 +68,7 @@ Plugin 'vim-scripts/StatusLineHighlight'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maxmellon/vim-jsx-pretty'
 " Plugin 'JamshedVesuna/vim-markdown-preview'
+" Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -205,6 +206,8 @@ set encoding=utf-8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" Speed up rendering
+set lazyredraw
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -410,7 +413,7 @@ endif
 let g:syntastic_python_checkers=['pylint']
 let g:syntastic_php_checkers=['php', 'phpmd', 'phpcs']
 let g:syntastic_php_phpcs_args='--exclude=PEAR.Commenting.FileComment,PEAR.Commenting.ClassComment,PEAR.Commenting.FunctionComment,Generic.Commenting.DocComment'
-let g:syntastic_php_phpmd_post_args='codesize,design,unusedcode,naming'
+let g:syntastic_php_phpmd_post_args='codesize,design,unusedcode'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_java_javac_config_file_enabled = 1
 let g:android_sdk_path='~/android-sdk-macosx'
