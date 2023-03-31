@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let g:python3_host_prog = "/opt/homebrew/bin/python3"
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -26,27 +28,23 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
-Plugin 'corntrace/bufexplorer'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-scripts/mayansmoke'
+" Plugin 'corntrace/bufexplorer'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'amix/open_file_under_cursor.vim'
-Plugin 'scrooloose/snipmate-snippets'
-Plugin 'vim-scripts/tlib'
 Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'scrooloose/snipmate-snippets'
 Plugin 'sophacles/vim-bundle-mako'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'groenewege/vim-less'
 " Plugin 'tpope/vim-markdown'
-Plugin 'therubymug/vim-pyte'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-expand-region'
-Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mg979/vim-visual-multi'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -58,17 +56,22 @@ Plugin 'tpope/vim-commentary'
 " Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'vim-scripts/rcsvers.vim'
 " Plugin 'hhvm/vim-hack'
 Plugin 'kana/vim-textobj-user'
 Plugin 'beloglazov/vim-textobj-quotes'
 " Plugin 'hsanson/vim-android'
-Plugin 'vim-scripts/StatusLineHighlight'
+" Plugin 'vim-scripts/StatusLineHighlight'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maxmellon/vim-jsx-pretty'
-" Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'iamcco/markdown-preview.nvim'
 " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plugin 'github/copilot.vim'
+Plugin 'kevinhwang91/nvim-hlslens'
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -194,6 +197,11 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
+    try
+        set guifont=menlo\ nf:h12
+    catch
+        set guifont=menlo:h12
+    endtry
     if has('gui_macvim')
         let $SUDO_ASKPASS="/usr/local/bin/macvim-askpass"
         let $DISPLAY=":0"
@@ -288,6 +296,9 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" Open copilot suggestions
+map <leader>cc :Copilot <cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Important: 
 "       This requries that you install https://github.com/amix/vimrc !
@@ -298,18 +309,18 @@ map <leader>pp :setlocal paste!<cr>
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerFindActive=1
-let g:bufExplorerSortBy='name'
-map <leader>o :BufExplorer<cr>
+" let g:bufExplorerDefaultHelp=0
+" let g:bufExplorerShowRelativePath=1
+" let g:bufExplorerFindActive=1
+" let g:bufExplorerSortBy='name'
+" map <leader>o :BufExplorer<cr>
 
 
 """"""""""""""""""""""""""""""
 " => MRU plugin
 """"""""""""""""""""""""""""""
-let MRU_Max_Entries = 400
-map <leader>f :MRU<CR>
+" let MRU_Max_Entries = 400
+" map <leader>f :MRU<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -325,14 +336,14 @@ endif
 """"""""""""""""""""""""""""""
 " => CTRL-P
 """"""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_working_path_mode = 0
 
-let g:ctrlp_map = '<c-f>'
-map <leader>j :CtrlP<cr>
-map <c-b> :CtrlPBuffer<cr>
+" let g:ctrlp_map = '<c-f>'
+" map <leader>j :CtrlP<cr>
+" map <c-b> :CtrlPBuffer<cr>
 
-let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+" let g:ctrlp_max_height = 20
+" let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 
 
 """"""""""""""""""""""""""""""
@@ -352,8 +363,8 @@ snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
 """"""""""""""""""""""""""""""
 " => Vim grep
 """"""""""""""""""""""""""""""
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
+" let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
+" set grepprg=/bin/grep\ -nH
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,7 +382,7 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_next_key="\<C-s>"
+let g:multi_cursor_next_key="\<C-s\>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -385,7 +396,11 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline config (force color)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="luna"
+let g:airline_theme="jellybeans"
+
+if has("gui_running")
+    let g:airline_powerline_fonts = 1
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
@@ -414,8 +429,13 @@ let g:syntastic_python_checkers=['pylint']
 let g:syntastic_php_checkers=['php', 'phpmd', 'phpcs']
 let g:syntastic_php_phpcs_args='--exclude=PEAR.Commenting.FileComment,PEAR.Commenting.ClassComment,PEAR.Commenting.FunctionComment,Generic.Commenting.DocComment'
 let g:syntastic_php_phpmd_post_args='codesize,design,unusedcode'
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_java_javac_config_file_enabled = 1
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_generic = 1
+let g:syntastic_javascript_eslint_exec = '/bin/ls'
+let g:syntastic_javascript_eslint_exe='./node_modules/.bin/eslint'
+let g:syntastic_javascript_eslint_args='-f compact'
+let g:syntastic_java_javac_config_file_enabled=1
+let g:syntastic_always_populate_loc_list=1
 let g:android_sdk_path='~/android-sdk-macosx'
 
 " Custom CoffeeScript SyntasticCheck
@@ -435,7 +455,7 @@ let g:rvSaveDirectoryName="/tmp/vimRcs/"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled=0
+let g:gitgutter_enabled=1
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -447,3 +467,31 @@ let g:vim_jsx_pretty_colorful_config=1
 " => VIM markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let vim_markdown_preview_github=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SnipMate
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:snipMate = { 'snippet_version' : 1 }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => hlslens
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:hlslens#enable = 1
+
+lua require('hlslens').setup()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => telescope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <leader>ff :Telescope find_files<cr>
+nnoremap <silent> <leader>fg :Telescope live_grep<cr>
+nnoremap <silent> <leader>fb :Telescope buffers<cr>
+nnoremap <silent> <leader>fh :Telescope help_tags<cr>
+nnoremap <silent> <leader>fm :Telescope marks<cr>
+nnoremap <silent> <leader>fi :Telescope file_browser<cr>
+nnoremap <silent> <leader>fc :Telescope colorsche<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => multi-visual-cursor
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:VM_leader = ","
