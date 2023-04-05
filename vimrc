@@ -28,7 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'mileszs/ack.vim'
-" Plugin 'corntrace/bufexplorer'
+Plugin 'corntrace/bufexplorer'
 " Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/nginx.vim'
@@ -56,7 +56,7 @@ Plugin 'tpope/vim-commentary'
 " Plugin 'fatih/vim-go'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'morhetz/gruvbox'
-Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'vim-scripts/rcsvers.vim'
 " Plugin 'hhvm/vim-hack'
 Plugin 'kana/vim-textobj-user'
@@ -309,11 +309,11 @@ map <leader>cc :Copilot <cr>
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
-" let g:bufExplorerDefaultHelp=0
-" let g:bufExplorerShowRelativePath=1
-" let g:bufExplorerFindActive=1
-" let g:bufExplorerSortBy='name'
-" map <leader>o :BufExplorer<cr>
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=1
+let g:bufExplorerSortBy='name'
+map <leader>o :BufExplorer<cr>
 
 
 """"""""""""""""""""""""""""""
