@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 rm -f ~/.vimrc
+mkdir ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-nvim +PluginInstall +qall
+rm -f ~/.tern-project
+ln -s ~/.vim/tern-project ~/.tern-project
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim +PlugInstall +qall

@@ -3,87 +3,91 @@ filetype off                  " required
 
 let g:python3_host_prog = "/opt/homebrew/bin/python3"
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin('~/.vim/plugged')
 " The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" Plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" Plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git Plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
+" Keep Plug commands between vundle#begin/end.
+" Plug on GitHub repo
+"Plug 'tpope/vim-fugitive'
+" Plug from http://vim-scripts.org/vim/scripts.html
+"Plug 'L9'
+" Git Plug not hosted on GitHub
+"Plug 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
+"Plug 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+"Plug 'user/L9', {'name': 'newL9'}
 
-Plugin 'mileszs/ack.vim'
-Plugin 'corntrace/bufexplorer'
-" Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/nginx.vim'
-Plugin 'amix/open_file_under_cursor.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'scrooloose/snipmate-snippets'
-Plugin 'sophacles/vim-bundle-mako'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'groenewege/vim-less'
-" Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-expand-region'
-Plugin 'mg979/vim-visual-multi'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'junegunn/goyo.vim'
-Plugin 'amix/vim-zenroom2'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-commentary'
-" Plugin 'fatih/vim-go'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'morhetz/gruvbox'
-" Plugin 'ycm-core/YouCompleteMe'
-" Plugin 'vim-scripts/rcsvers.vim'
-" Plugin 'hhvm/vim-hack'
-Plugin 'kana/vim-textobj-user'
-Plugin 'beloglazov/vim-textobj-quotes'
-" Plugin 'hsanson/vim-android'
-" Plugin 'vim-scripts/StatusLineHighlight'
-Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'iamcco/markdown-preview.nvim'
-" Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plugin 'github/copilot.vim'
-Plugin 'kevinhwang91/nvim-hlslens'
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
+Plug 'mileszs/ack.vim'
+Plug 'corntrace/bufexplorer'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'preservim/nerdtree'
+Plug 'vim-scripts/nginx.vim'
+Plug 'amix/open_file_under_cursor.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'scrooloose/snipmate-snippets'
+Plug 'sophacles/vim-bundle-mako'
+Plug 'altercation/vim-colors-solarized'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'groenewege/vim-less'
+" Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-expand-region'
+Plug 'mg979/vim-visual-multi'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+" Plug 'fatih/vim-go'
+Plug 'airblade/vim-gitgutter'
+Plug 'morhetz/gruvbox'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'ternjs/tern_for_vim'
+" Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+" Plug 'taoso/phpcd.vim', { 'branch': 'php8' }
+" Plug 'ycm-core/YouCompleteMe'
+" Plug 'vim-scripts/rcsvers.vim'
+" Plug 'hhvm/vim-hack'
+Plug 'kana/vim-textobj-user'
+Plug 'beloglazov/vim-textobj-quotes'
+" Plug 'hsanson/vim-android'
+" Plug 'vim-scripts/StatusLineHighlight'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'prettier/vim-prettier', { 'do': 'npm install --force' }
+Plug 'github/copilot.vim'
+Plug 'kevinhwang91/nvim-hlslens'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 " To ignore Plugin indent changes, instead use:
 "filetype Plugin on
 "
 " Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PlugList       - lists configured plugins
+" :PlugInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PlugSearch foo - searches for foo; append `!` to refresh local cache
+" :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
@@ -216,6 +220,21 @@ set ffs=unix,dos,mac
 
 " Speed up rendering
 set lazyredraw
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Neovide settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists("g:neovide")
+     let g:neovide_cursor_animation_length=0
+     let g:neovide_remember_window_size=v:true
+     " mapping macOS shortcuts
+     let g:neovide_input_use_logo=v:true
+     map <D-v> "+p<CR>
+     map! <D-v> <C-R>+
+     tmap <D-v> <C-R>+
+     vmap <D-c> "+y<CR>
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -434,6 +453,7 @@ let g:syntastic_javascript_eslint_generic = 1
 let g:syntastic_javascript_eslint_exec = '/bin/ls'
 let g:syntastic_javascript_eslint_exe='./node_modules/.bin/eslint'
 let g:syntastic_javascript_eslint_args='-f compact'
+let g:syntastic_filetype_map = { 'javascriptreact': 'javascript' , 'javascript.jsx': 'javascript', 'javascript.jsx.react': 'javascript' }
 let g:syntastic_java_javac_config_file_enabled=1
 let g:syntastic_always_populate_loc_list=1
 let g:android_sdk_path='~/android-sdk-macosx'
@@ -488,10 +508,76 @@ nnoremap <silent> <leader>fg :Telescope live_grep<cr>
 nnoremap <silent> <leader>fb :Telescope buffers<cr>
 nnoremap <silent> <leader>fh :Telescope help_tags<cr>
 nnoremap <silent> <leader>fm :Telescope marks<cr>
-nnoremap <silent> <leader>fi :Telescope file_browser<cr>
-nnoremap <silent> <leader>fc :Telescope colorsche<cr>
+"nnoremap <silent> <leader>fi :Telescope file_browser<cr>
+nnoremap <silent> <leader>fc :Telescope colorscheme<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => multi-visual-cursor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:VM_leader = ","
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => deoplete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('num_processes', 4)
+
+" Set bin if you have many instalations
+" let g:deoplete#sources#ternjs#tern_bin = '/path/to/tern_bin'
+let g:deoplete#sources#ternjs#timeout = 1
+
+" Whether to include the types of the completions in the result data. Default: 0
+let g:deoplete#sources#ternjs#types = 1
+
+" Whether to include the distance (in scopes for variables, in prototypes for 
+" properties) between the completions and the origin position in the result 
+" data. Default: 0
+let g:deoplete#sources#ternjs#depths = 0
+
+" Whether to include documentation strings (if found) in the result data.
+" Default: 0
+let g:deoplete#sources#ternjs#docs = 1
+
+" When on, only completions that match the current word at the given point will
+" be returned. Turn this off to get all results, so that you can filter on the 
+" client side. Default: 1
+let g:deoplete#sources#ternjs#filter = 1
+
+" Whether to use a case-insensitive compare between the current word and 
+" potential completions. Default 0
+let g:deoplete#sources#ternjs#case_insensitive = 1
+
+" When completing a property and no completions are found, Tern will use some 
+" heuristics to try and return some properties anyway. Set this to 0 to 
+" turn that off. Default: 1
+let g:deoplete#sources#ternjs#guess = 1
+
+" Determines whether the result set will be sorted. Default: 1
+let g:deoplete#sources#ternjs#sort = 1
+
+" When disabled, only the text before the given position is considered part of 
+" the word. When enabled (the default), the whole variable name that the cursor
+" is on will be included. Default: 1
+let g:deoplete#sources#ternjs#expand_word_forward = 1
+
+" Whether to ignore the properties of Object.prototype unless they have been 
+" spelled out by at least two characters. Default: 1
+let g:deoplete#sources#ternjs#omit_object_prototype = 1
+
+" Whether to include JavaScript keywords when completing something that is not 
+" a property. Default: 0
+let g:deoplete#sources#ternjs#include_keywords = 0
+
+" If completions should be returned when inside a literal. Default: 1
+let g:deoplete#sources#ternjs#in_literal = 0
+
+
+" Add extra filetypes
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ '...'
+                \ ]
+
+" Settings for php
+" call deoplete#custom#option('ignore_sources', {'php': ['omni']})
+cd ~/
