@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'user/L9', {'name': 'newL9'}
 
 Plug 'mileszs/ack.vim'
-Plug 'corntrace/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'vim-scripts/nginx.vim'
@@ -76,7 +76,7 @@ Plug 'kevinhwang91/nvim-hlslens'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -119,6 +119,7 @@ set so=7
 
 " Turn on the WiLd menu
 set wildmenu
+set startofline " Why does neovim change these defaults? Who wants to go to a random position in the line after `gg` or `G`?
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -189,11 +190,23 @@ set nofoldenable
 syntax enable 
 
 try
-    colorscheme neuromancer
+    colorscheme catppuccin
 catch
+    set background=dark
 endtry
 
-set background=dark
+" Set extra options for GUI neovide
+if exists("g:neovide")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=xterm-256color
+    set guitablabel=%t
+    try
+        set guifont=menlo\ nf:h12
+    catch
+        set guifont=menlo:h12
+    endtry
+endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -229,9 +242,14 @@ if exists("g:neovide")
      let g:neovide_remember_window_size=v:true
      " mapping macOS shortcuts
      let g:neovide_input_use_logo=v:true
-     map <D-v> "+p<CR>
-     map! <D-v> <C-R>+
-     tmap <D-v> <C-R>+
+     map <D-a> ggv$G$<CR>
+     map <D-t> :tabnew<CR>
+     map <D-w> :tabclose<CR>
+     map <D-s> :w<CR>
+     map <D-v> :set paste<CR>"+p<CR>:set nopaste<CR>
+     map <D-n> :silent exec '!open --new -b com.neovide.neovide --args ${PWD}'<CR> 
+     vnoremap <D-v> "*p
+     map! <D-v> <esc>:set paste<CR>a<C-R>+<CR><esc>:set nopaste<CR>i
      vmap <D-c> "+y<CR>
 endif
 
@@ -417,7 +435,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme="jellybeans"
 
-if has("gui_running")
+if has("gui_running") || exists("g:neovide")
     let g:airline_powerline_fonts = 1
 endif
 
