@@ -3,94 +3,9 @@ filetype off                  " required
 
 let g:python3_host_prog = "/opt/homebrew/bin/python3"
 
-call plug#begin('~/.vim/plugged')
-" The following are examples of different formats supported.
-" Keep Plug commands between vundle#begin/end.
-" Plug on GitHub repo
-"Plug 'tpope/vim-fugitive'
-" Plug from http://vim-scripts.org/vim/scripts.html
-"Plug 'L9'
-" Git Plug not hosted on GitHub
-"Plug 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plug 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plug 'user/L9', {'name': 'newL9'}
-
-Plug 'mileszs/ack.vim'
-Plug 'jlanzarotta/bufexplorer'
-" Plug 'ctrlpvim/ctrlp.vim'
-Plug 'preservim/nerdtree'
-Plug 'vim-scripts/nginx.vim'
-Plug 'amix/open_file_under_cursor.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'scrooloose/snipmate-snippets'
-Plug 'sophacles/vim-bundle-mako'
-Plug 'altercation/vim-colors-solarized'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'groenewege/vim-less'
-" Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-surround'
-Plug 'terryma/vim-expand-region'
-Plug 'mg979/vim-visual-multi'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/goyo.vim'
-Plug 'amix/vim-zenroom2'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-" Plug 'fatih/vim-go'
-Plug 'airblade/vim-gitgutter'
-Plug 'morhetz/gruvbox'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'ternjs/tern_for_vim'
-" Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-" Plug 'taoso/phpcd.vim', { 'branch': 'php8' }
-" Plug 'ycm-core/YouCompleteMe'
-" Plug 'vim-scripts/rcsvers.vim'
-" Plug 'hhvm/vim-hack'
-Plug 'kana/vim-textobj-user'
-Plug 'beloglazov/vim-textobj-quotes'
-" Plug 'hsanson/vim-android'
-" Plug 'vim-scripts/StatusLineHighlight'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'iamcco/markdown-preview.nvim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install --force' }
-Plug 'github/copilot.vim'
-Plug 'kevinhwang91/nvim-hlslens'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-
-" All of your Plugins must be added before the following line
-call plug#end()
-" To ignore Plugin indent changes, instead use:
-"filetype Plugin on
-"
-" Brief help
-" :PlugList       - lists configured plugins
-" :PlugInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PlugSearch foo - searches for foo; append `!` to refresh local cache
-" :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+lua << EOF
+require('init')
+EOF
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -108,7 +23,7 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+command W w !sudo -A tee % > /dev/null
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -190,26 +105,29 @@ set nofoldenable
 syntax enable 
 
 try
-    colorscheme catppuccin
+    colorscheme neuromancer
 catch
     set background=dark
 endtry
 
 " Set extra options for GUI neovide
 if exists("g:neovide")
+    try
+        colorscheme catppuccin
+    catch
+        set background=dark
+    endtry
     set guioptions-=T
     set guioptions-=e
     set t_Co=xterm-256color
-    set guitablabel=%t
+    " set guitablabel=%t
     try
         set guifont=menlo\ nf:h12
     catch
         set guifont=menlo:h12
     endtry
-endif
-
-" Set extra options when running in GUI mode
-if has("gui_running")
+elseif has("gui_running")
+    " Set extra options when running in GUI mode
     set guioptions-=T
     set guioptions-=e
     set t_Co=256
@@ -334,7 +252,7 @@ map <leader>x :e ~/buffer.md<cr>
 map <leader>pp :setlocal paste!<cr>
 
 " Open copilot suggestions
-map <leader>cc :Copilot <cr>
+"map <leader>cc :Copilot <cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Important: 
@@ -429,16 +347,6 @@ let g:multi_cursor_next_key="\<C-s\>"
 vmap Si S(i_<esc>f)
 au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-airline config (force color)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="jellybeans"
-
-if has("gui_running") || exists("g:neovide")
-    let g:airline_powerline_fonts = 1
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -517,6 +425,11 @@ let g:snipMate = { 'snippet_version' : 1 }
 let g:hlslens#enable = 1
 
 lua require('hlslens').setup()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => copilotchat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua require("CopilotChat").setup()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => telescope
@@ -598,4 +511,14 @@ let g:deoplete#sources#ternjs#filetypes = [
 
 " Settings for php
 " call deoplete#custom#option('ignore_sources', {'php': ['omni']})
-cd ~/
+"
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-airline config (force color)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_theme="jellybeans"
+
+if has("gui_running") || exists("g:neovide")
+    let g:airline_powerline_fonts = 1
+endif
+AirlineRefresh

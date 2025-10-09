@@ -1,6 +1,19 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup(require("plugins"))
+
 vim.g.neovide_scroll_animation_length = 0
-vim.g.neovide_fullscreen = true
-vim.g.neovide_profiler = true
+-- vim.g.neovide_fullscreen = true
+-- vim.g.neovide_profiler = true
 
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
